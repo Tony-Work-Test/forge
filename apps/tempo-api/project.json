@@ -1,0 +1,61 @@
+{
+  "name": "tempo-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/tempo-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/tempo-api",
+        "main": "apps/tempo-api/src/main.ts",
+        "tsConfig": "apps/tempo-api/tsconfig.app.json",
+        "assets": [
+          "apps/tempo-api/src/assets"
+        ],
+        "webpackConfig": "apps/tempo-api/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "tempo-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "tempo-api:build:development"
+        },
+        "production": {
+          "buildTarget": "tempo-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": [
+        "{options.outputFile}"
+      ]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "apps/tempo-api/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
