@@ -1,0 +1,61 @@
+version: '3'
+services:
+  # Container for ccounts
+  accounts:
+    ports:
+        - "3001:3000"
+    build:
+      context: ./apps/accounts
+      
+    # Add any additional configuration for folder1 container
+
+  # Container for authentication
+  auth:
+    ports:
+        - "3002:3000"
+    build:
+      context: ./apps/authentication
+    # Add any additional configuration for folder2 container
+
+  # Container for calander
+  calendar:
+    ports:
+        - "3003:3000"
+    build:
+      context: ./apps/calendar
+    # Add any additional configuration for folder3 container
+
+      # Container for customers
+  customers:
+    ports:
+        - "3004:3000"
+    build:
+      context: ./apps/customers
+    # Add any additional configuration for folder1 container
+
+  # Container for resources
+  resources:
+    ports:
+        - "3005:3000"
+    build:
+      context: ./apps/resources
+    # Add any additional configuration for folder2 container
+
+  # Container for workload
+  workload:
+    ports:
+        - "3006:3000"
+    build:
+      context: ./apps/workload
+    # Add any additional configuration for folder3 container
+
+    # Container for workload
+  tempo:
+    ports:
+        - "3007:3000"
+    build:
+      context: ./apps/workload
+    # Add any additional configuration for folder3 container
+
+
+  # Add more containers for each folder as needed
