@@ -105,6 +105,42 @@ export interface IActiveTeamMemberResponse {
     self: string;
 }
 
+export interface IUpdateMembershipPayload {
+  commitmentPercent: number;
+  from: string;
+  roleId: number;
+  to: string;
+}
+
+export interface ICreateTeamLinkPayload {
+  scopeId: number;
+  scopeType: string;
+  teamId: number;
+}
+
+export interface ICreateTeamLinkResponse {
+  id: number;
+  scope: ITeamLinkScope;
+  self: string;
+  team: ITeam;
+}
+export interface ICreateTeamMemberResponse {
+  commitmentPercent: number;
+  from: string;
+  id: number;
+  member: ITeamMember;
+  role: ITeamMembershipRole;
+  self: string;
+  team: ITeamLink;
+  to: string;
+}
+
+export interface IGetTeamMembershipsResponse {
+  metadata: ITeamMembershipMetadata;
+  results: IMembershipResponse[];
+  self: string;
+}
+
 interface ITeamMetadata {
   count: number;
   limit: number;
@@ -222,4 +258,24 @@ interface IActiveMemberships {
     active: IActiveTeamMemberResults;
     self: string;
 }
-
+export interface IGetMemberByIDResponse {
+  commitmentPercent: number;
+  from: string;
+  id: number;
+  member: {
+    accountId: string;
+    self: string;
+  };
+  role: {
+    id: number;
+    name: string;
+    self: string;
+  };
+  self: string;
+  team: {
+    id: number;
+    name: string;
+    self: string;
+  };
+  to: string;
+}
