@@ -1,0 +1,79 @@
+{
+  "projects": {
+    "accounts": {
+      "type": "library",
+      "root": "libs/accounts",
+      "entryFile": "index",
+      "sourceRoot": "libs/accounts/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/accounts/tsconfig.lib.json"
+      }
+    },
+    "teams": {
+      "type": "library",
+      "root": "libs/teams",
+      "entryFile": "index",
+      "sourceRoot": "libs/teams/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/teams/tsconfig.lib.json"
+      }
+    },
+    "customers": {
+      "type": "library",
+      "root": "libs/customers",
+      "entryFile": "index",
+      "sourceRoot": "libs/customers/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/customers/tsconfig.lib.json"
+      }
+    },
+    "resources": {
+      "type": "library",
+      "root": "libs/resources",
+      "entryFile": "index",
+      "sourceRoot": "libs/resources/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/resources/tsconfig.lib.json"
+      }
+    },
+    "calendar": {
+      "type": "library",
+      "root": "libs/calendar",
+      "entryFile": "index",
+      "sourceRoot": "libs/calendar/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/calendar/tsconfig.lib.json"
+      }
+    },
+    "admin": {
+      "type": "library",
+      "root": "libs/admin",
+      "entryFile": "index",
+      "sourceRoot": "libs/admin/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/admin/tsconfig.lib.json"
+      }
+    },
+    "authentication": {
+      "type": "library",
+      "root": "libs/authentication",
+      "entryFile": "index",
+      "sourceRoot": "libs/authentication/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/authentication/tsconfig.lib.json"
+      }
+    },
+    "workload": {
+      "type": "library",
+      "root": "libs/workload",
+      "entryFile": "index",
+      "sourceRoot": "libs/workload/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/workload/tsconfig.lib.json"
+      }
+    }
+  },
+  "compilerOptions": {
+    "webpack": true
+  }
+}
