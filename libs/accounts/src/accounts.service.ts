@@ -1,21 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {
-  IAccountPayload,
-  IApiResponse,
-  ICreateAccountLinkPayload,
-  ICreateAccountLinkResponse,
-  ICreateAccountResponse,
-  ICreateCategoryPayload,
-  ICreateCategoryResponse,
-  IGetAccountByIdResponse,
-  IGetAccountLinksByAccountIdResponse,
-  IGetAccountLinksByIdResponse,
-  IGetAccountLinksByProjectIdResponse,
-  IGetAccountsResponse,
-  ISearchAccountsPayload,
-  ISearchAccountsResponse,
-  IUpdateAccountResponse,
-} from '../interfaces/accounts';
+
 
 @Injectable()
 export class AccountsService {
