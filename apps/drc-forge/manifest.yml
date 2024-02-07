@@ -1,0 +1,22 @@
+modules:
+  jira:projectPage:
+    - key: project-page
+      title: Project page Custom UI
+      layout: basic
+      resource: project-page
+      resolver:
+        function: resolver
+  function:
+    - key: resolver
+      handler: index.handler
+resources:
+  - key: project-page
+    path: drc-reporting-ui
+    tunnel:
+      port: 4200
+permissions:
+  content:
+    styles:
+      - 'unsafe-inline'
+app:
+  id: ari:cloud:ecosystem::app/to-be-generated

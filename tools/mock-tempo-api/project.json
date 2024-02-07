@@ -1,0 +1,61 @@
+{
+  "name": "mock-tempo-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "tools/mock-tempo-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/mock-tempo-api",
+        "main": "tools/mock-tempo-api/src/main.ts",
+        "tsConfig": "tools/mock-tempo-api/tsconfig.app.json",
+        "assets": [
+          "tools/mock-tempo-api/src/assets"
+        ],
+        "webpackConfig": "tools/mock-tempo-api/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "mock-tempo-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "mock-tempo-api:build:development"
+        },
+        "production": {
+          "buildTarget": "mock-tempo-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": [
+        "{options.outputFile}"
+      ]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "tools/mock-tempo-api/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
