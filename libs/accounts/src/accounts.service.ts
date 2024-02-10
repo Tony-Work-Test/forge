@@ -1,7 +1,23 @@
 import { Injectable } from '@nestjs/common';
+import {
+  IAccountPayload,
+  IApiResponse,
+  ICreateAccountLinkPayload,
+  ICreateAccountLinkResponse,
+  ICreateAccountResponse,
+  ICreateCategoryPayload,
+  ICreateCategoryResponse,
+  IGetAccountByIdResponse,
+  IGetAccountLinksByAccountIdResponse,
+  IGetAccountLinksByIdResponse,
+  IGetAccountLinksByProjectIdResponse,
+  IGetAccountsResponse,
+  ISearchAccountsPayload,
+  ISearchAccountsResponse,
+  IUpdateAccountResponse,
+} from '../interfaces/accounts';
 
-
-@Injectable()
+@Injectable
 export class AccountsService {
   // Accounts
 
@@ -438,82 +454,79 @@ export class AccountsService {
     }
   }
 
-    deleteAccountLink(id: string): IApiResponse {
-        if (id) {
-        const response: IApiResponse = {
-            statusCode: 204,
-            message: 'Account Link deleted successfully.',
-        };
-        return response;
-        } else {
-        const response: IApiResponse = {
-            statusCode: 400,
-            message: 'Account Link cannot be deleted for some reasons.',
-        };
-        return response;
-        }
+  deleteAccountLink(id: string): IApiResponse {
+    if (id) {
+      const response: IApiResponse = {
+        statusCode: 204,
+        message: 'Account Link deleted successfully.',
+      };
+      return response;
+    } else {
+      const response: IApiResponse = {
+        statusCode: 400,
+        message: 'Account Link cannot be deleted for some reasons.',
+      };
+      return response;
     }
+  }
 
-    getAccountLinkByProjectId(id: string): IGetAccountLinksByProjectIdResponse | IApiResponse {
-
-        if (id) {
-        const response: IGetAccountLinksByProjectIdResponse = {
-            "metadata": {
-              "count": 1
+  getAccountLinkByProjectId(
+    id: string
+  ): IGetAccountLinksByProjectIdResponse | IApiResponse {
+    if (id) {
+      const response: IGetAccountLinksByProjectIdResponse = {
+        metadata: {
+          count: 1,
+        },
+        results: [
+          {
+            account: {
+              self: 'https://api.tempo.io/[...]',
             },
-            "results": [
-              {
-                "account": {
-                  "self": "https://api.tempo.io/[...]"
-                },
-                "default": true,
-                "id": 1,
-                "scope": {
-                  "id": 10012,
-                  "self": "https://api.tempo.io/[...]",
-                  "type": "PROJECT"
-                },
-                "self": "https://api.tempo.io/[...]"
-              }
-            ],
-            "self": "https://api.tempo.io/[...]"
-          }
-        return response;
-        } else {
-        const response: IApiResponse = {
-            statusCode: 404,
-            message: 'Account Link not Found',
-        };
-        return response;
-        }
+            default: true,
+            id: 1,
+            scope: {
+              id: 10012,
+              self: 'https://api.tempo.io/[...]',
+              type: 'PROJECT',
+            },
+            self: 'https://api.tempo.io/[...]',
+          },
+        ],
+        self: 'https://api.tempo.io/[...]',
+      };
+      return response;
+    } else {
+      const response: IApiResponse = {
+        statusCode: 404,
+        message: 'Account Link not Found',
+      };
+      return response;
     }
+  }
 
-    getAccountLinkById(id: string): IGetAccountLinksByIdResponse | IApiResponse {
-
-        if (id) {
-        const response: IGetAccountLinksByIdResponse= {
-            "account": {
-              "self": "https://api.tempo.io/[...]"
-            },
-            "default": true,
-            "id": 1,
-            "scope": {
-              "id": 10012,
-              "self": "https://api.tempo.io/[...]",
-              "type": "PROJECT"
-            },
-            "self": "https://api.tempo.io/[...]"
-          }
-        return response;
-        } else {
-        const response: IApiResponse = {
-            statusCode: 404,
-            message: 'Account Link not Found',
-        };
-        return response;
-        }
+  getAccountLinkById(id: string): IGetAccountLinksByIdResponse | IApiResponse {
+    if (id) {
+      const response: IGetAccountLinksByIdResponse = {
+        account: {
+          self: 'https://api.tempo.io/[...]',
+        },
+        default: true,
+        id: 1,
+        scope: {
+          id: 10012,
+          self: 'https://api.tempo.io/[...]',
+          type: 'PROJECT',
+        },
+        self: 'https://api.tempo.io/[...]',
+      };
+      return response;
+    } else {
+      const response: IApiResponse = {
+        statusCode: 404,
+        message: 'Account Link not Found',
+      };
+      return response;
     }
-
-
-    
+  }
 }

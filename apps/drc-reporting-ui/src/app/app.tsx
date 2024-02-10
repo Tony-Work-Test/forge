@@ -1,14 +1,18 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.scss';
+// import styles from './app.module.scss';
 
 import NxWelcome from './nx-welcome';
+import { render, Fragment, Text, Macro } from '@forge/ui';
 
-export function App() {
+export const App = () => {
   return (
-    <div>
+    <Fragment>
       <NxWelcome title="drc-reporting-ui" />
-    </div>
+      <Text>Welcome to Reporting UI!</Text>
+    </Fragment>
   );
 }
 
-export default App;
+export const run = render(
+  <Macro app={<App />} />
+);

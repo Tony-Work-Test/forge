@@ -56,7 +56,8 @@
       "options": {
         "targetName": "lint"
       }
-    }
+    },
+    "@toolsplus/nx-forge"
   ],
   "generators": {
     "@nx/react": {
