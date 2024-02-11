@@ -2,7 +2,7 @@
 // import styles from './app.module.scss';
 
 import NxWelcome from './nx-welcome';
-import { render, Fragment, Text, Macro } from '@forge/ui';
+import { Fragment, Text } from '@forge/ui';
 
 export const App = () => {
   return (
@@ -11,8 +11,4 @@ export const App = () => {
       <Text>Welcome to Reporting UI!</Text>
     </Fragment>
   );
-}
-
-export const run = render(
-  <Macro app={<App />} />
-);
+};
