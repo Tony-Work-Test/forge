@@ -1,3 +1,4 @@
+const path = require('path');
 const { composePlugins, withNx } = require('@nx/webpack');
 const { withReact } = require('@nx/react');
 
@@ -12,6 +13,10 @@ module.exports = composePlugins(
   (config) => {
     // Update the webpack config as needed here.
     // e.g. `config.plugins.push(new MyPlugin())`
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'drc-reporting-ui': path.resolve(__dirname, '../drc-reporting-ui')
+    };
     return config;
   }
 );

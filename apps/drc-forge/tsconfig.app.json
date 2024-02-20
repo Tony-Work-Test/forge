@@ -10,8 +10,8 @@
     "lib": ["dom", "es2017"],
     "types": ["node"],
     "jsx": "react",
-    "jsxFactory": "ForgeUI.createElement"
+    "jsxFactory": "ForgeUI.createElement",
   },
-  "exclude": ["**/*.spec.ts", "**/*.test.ts"],
-  "include": ["**/*.ts"]
+  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["**/*.spec.ts", "**/*.test.ts", "node_modules"]
 }

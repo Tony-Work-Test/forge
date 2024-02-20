@@ -7,7 +7,8 @@ tmp
 
 # dependencies
 node_modules
-
+./apps/tempo-api/src/app/export/drc-token.ts
+*.drc-token.ts
 # IDEs and editors
 /.idea
 .project
@@ -39,3 +40,4 @@ testem.log
 Thumbs.db
 
 .nx/cache
+apps/tempo-api/src/app/export/drc-token.ts
