@@ -1,5 +1,25 @@
 {
   "projects": {
+    "tempo-api": {
+      "type": "application",
+      "root": "apps/tempo-api",
+      "entryFile": "main.ts",
+      "sourceRoot": "apps/tempo-api/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/tempo-api/tsconfig.app.json"
+      },
+      "schematics": {
+        "@nrwl/nest:service": {
+          "path": "apps/tempo-api/src/app/services"
+        },
+        "@nrwl/nest:controller": {
+          "path": "apps/tempo-api/src/app/controllers"
+        },
+        "@nrwl/nest:module": {
+          "path": "apps/tempo-api/src/app/modules"
+        }
+      }
+    },
     "accounts": {
       "type": "library",
       "root": "libs/accounts",

@@ -1,7 +1,7 @@
 // src/services/assets.service.ts
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
-import {token} from './drc-token';
+import {token} from '../tokens/drc-token';
 interface IEmployee {
     objectType: string,
     name: string,

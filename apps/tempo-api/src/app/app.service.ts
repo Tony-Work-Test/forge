@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { EmailService } from './export/csv-export';
-import { GetAllUsers } from './import/user-import';
+import { GetAllUsers } from './users/users';
 
 interface TableEntry {
   employeeNumber: string;

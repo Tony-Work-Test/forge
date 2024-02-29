@@ -41,3 +41,4 @@ Thumbs.db
 
 .nx/cache
 apps/tempo-api/src/app/export/drc-token.ts
+apps/tempo-api/src/app/tokens/drc-token.ts

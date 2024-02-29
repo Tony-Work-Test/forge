@@ -13,14 +13,14 @@
         "nx",
         "serve",
         "tempo-api", // Replace with your NestJS app name in the Nx workspace
-        
+        "--inspect=9229"
       ],
-    // Remove the "port" property
       "skipFiles": ["<node_internals>/**"],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "sourceMaps": true,
-      "outFiles": ["${workspaceFolder}/dist/apps/your-app-name/**/*.js"] // Adjust the path according to your output directory structure
+      "outFiles": ["${workspaceFolder}/dist/apps/tempo-api/**/*.js"] // Adjust the path according to your output directory structure
     }
+  
   ]
 }
