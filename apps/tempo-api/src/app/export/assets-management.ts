@@ -3,18 +3,25 @@ import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 import {token} from './drc-token';
 interface IEmployee {
-    objectType: "employee",
-    name: "John Doe",
-    employeeNumber: "12345",
-    email: "test@test.com",
-    department: "Engineering",
-    location: "New York",
-    jobTitle: "Software Developer",
-    startDate: "2021-01-01"
+    objectType: string,
+    name: string,
+    employeeNumber: string,
+    email: string,
+    department: string,
+    location: string,
+    jobTitle: string,
+    startDate: string
 };
+// const links = {
+//   getStatus: "https://api.atlassian.com/jsm/assets/workspace/735ae9cf-8ded-47af-82c2-a59e2cd699f0/v1/importsource/bd524903-79cf-45a6-90fd-79cd3adc337f/configstatus",
+//   start: "https://api.atlassian.com/jsm/assets/workspace/735ae9cf-8ded-47af-82c2-a59e2cd699f0/v1/importsource/bd524903-79cf-45a6-90fd-79cd3adc337f/executions",
+//   mapping: "https://api.atlassian.com/jsm/assets/workspace/735ae9cf-8ded-47af-82c2-a59e2cd699f0/v1/importsource/bd524903-79cf-45a6-90fd-79cd3adc337f/mapping"
+// }
 @Injectable()
 export class AssetsService {
-  private readonly assetsApiUrl = 'https://datarecognitioncorp-sandbox-645.atlassian.net/rest/assets/1.0/object'; // Update with your actual Assets API URL
+    // TODO: Move to url dictionary
+  private readonly assetsApiUrl = 'https://datarecognitioncorp-sandbox-645.atlassian.net/rest/assets/1.0/object'; 
+  
   // TODO: Securely store and retrieve your access token
   private readonly accessToken = token; // Securely store and retrieve your access token
 

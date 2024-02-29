@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { EmailService } from './export/csv-export';
+import { GetAllUsers } from './import/user-import';
 
 interface TableEntry {
   employeeNumber: string;
@@ -19,8 +20,13 @@ interface TableEntry {
 export class AppService {
 
   constructor(private readonly emailService: EmailService) {}
+
   getData(): { message: string } {
     return { message: 'Hello API' };
+  }
+
+  async getAllUsers(): Promise<unknown> {
+    return  GetAllUsers();
   }
 
   convertTableToCSV(tableEntries: TableEntry[]): string {
