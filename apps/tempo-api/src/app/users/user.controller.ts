@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -7,6 +7,12 @@ export class UserController {
 
     @Get('getAllUsers')
     getUsers() {
-    return this.userService.getAllUsers();
-  }
+        return this.userService.getAllUsers();
+    }
+
+   @Get('groups:')
+   getUserGroups(@Param() params: {userId: string}) {
+    console.log('getUserGroups', params);
+        return this.userService.getUserGroups(params.userId);
+    }
 }

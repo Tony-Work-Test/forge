@@ -1,12 +1,19 @@
 import axios from 'axios';
 import { lastValueFrom } from 'rxjs';
 import { from } from 'rxjs';
-import { bearerToken} from '../tokens/drc-token';
+import { bearerToken, jiraToken} from '../tokens/drc-token';
+import { saveJsonToFile } from '../import/util';
 // import {token} from '../export/drc-token';
 
-const TempoURL =
-  `https://api.us.tempo.io/4/worklogs/user`;
+const TempoURL = 'https://api.us.tempo.io/4/worklogs/user';
+const TempoBaseURL = 'https://api.us.tempo.io/4';
 
+const JiraURL = 'https://datarecognitioncorp-sandbox-645.atlassian.net/rest/api/3'
+const email = 'tony.kelly@oasisdigital.com';
+const password = jiraToken
+const base64Credentials = Buffer.from(`${email}:${password}`).toString(
+  'base64'
+);
 
 export async function GetUsersWorklogs(userId: string) {
   let entries = [];
@@ -33,3 +40,51 @@ export async function GetUsersWorklogs(userId: string) {
   }
   return entries;
 }
+
+export async function GetUpdatedWork() {
+
+     // Assuming we want to fetch 50 entries per request
+    console.log('ran')
+      const response = await axios.get(`${JiraURL}/worklog/updated`, {
+        headers: {
+          Authorization: `Basic ${base64Credentials}`, // `Basic ${base64Credentials}
+          Accept: 'application/json',
+        },
+      
+      });
+      const responseData = response.data;
+      // Prepare the next startAt value for the next iteration
+   
+    return responseData;
+  }
+  
+
+  export async function GetWorkAttributes() {
+  
+   
+     // Assuming we want to fetch 50 entries per request
+     console.log('ran',)
+  
+      const response = await axios.get(`${TempoBaseURL}/work-attributes`, {
+        headers: {
+          Authorization: `Bearer ${bearerToken}`, // `Basic ${base64Credentials}
+          Accept: 'application/json',
+        },
+       
+      });
+      const responseData = response.data;
+  
+    return responseData;
+  }
+
+  export async function GetAllWorklogs(){
+    const response = await axios.get(`${TempoBaseURL}/worklogs`, {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`, // `Basic ${base64Credentials}
+        Accept: 'application/json',
+      },
+    });
+    const responseData = response.data;
+    await saveJsonToFile(responseData, 'worklogs.json')
+    return responseData;
+  }
