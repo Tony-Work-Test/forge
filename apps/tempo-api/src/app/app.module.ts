@@ -8,9 +8,18 @@ import { UserModule } from './users/user.module';
 import { WorklogsModule } from './worklogs/worklogs.module';
 import { ProjectsModule } from './projects/projects.module';
 import { AccountsModule } from './accounts/accounts.module';
+import { TeamsModule } from './teams/teams.module';
+import { ReportsModule } from './reports/reports.module';
 
 @Module({
-  imports: [UserModule, WorklogsModule, ProjectsModule, AccountsModule],
+  imports: [
+    UserModule,
+    WorklogsModule,
+    ProjectsModule,
+    AccountsModule,
+    TeamsModule,
+    ReportsModule,
+  ],
   controllers: [AppController],
   providers: [AppService, EmailService],
 })

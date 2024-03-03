@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { GetAllUsers, GetUserGroups } from './users';
+import { User } from '../import/interfaces';
 
 @Injectable()
 export class UserService {
@@ -7,7 +8,7 @@ export class UserService {
         throw new Error('Method not implemented.');
     }
 
-    async getAllUsers() {
+    async getAllUsers(): Promise<User[]> {
         return await GetAllUsers();
     }
 
@@ -15,4 +16,6 @@ export class UserService {
         console.log('userId', userId);
         return await GetUserGroups(userId);
     }
+
+    
 }

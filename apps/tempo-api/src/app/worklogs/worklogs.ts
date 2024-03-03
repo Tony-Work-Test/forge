@@ -3,6 +3,7 @@ import { lastValueFrom } from 'rxjs';
 import { from } from 'rxjs';
 import { bearerToken, jiraToken} from '../tokens/drc-token';
 import { saveJsonToFile } from '../import/util';
+import { Worklog } from '../import/interfaces';
 // import {token} from '../export/drc-token';
 
 const TempoURL = 'https://api.us.tempo.io/4/worklogs/user';
@@ -77,14 +78,14 @@ export async function GetUpdatedWork() {
     return responseData;
   }
 
-  export async function GetAllWorklogs(){
+  export async function GetAllWorklogs(): Promise<Worklog[]> {
     const response = await axios.get(`${TempoBaseURL}/worklogs`, {
       headers: {
         Authorization: `Bearer ${bearerToken}`, // `Basic ${base64Credentials}
         Accept: 'application/json',
       },
     });
-    const responseData = response.data;
+    const responseData = response.data.results as Worklog[];
     await saveJsonToFile(responseData, 'worklogs.json')
     return responseData;
   }
