@@ -24,7 +24,7 @@ export class ReportsService {
     }
     
     async getWorklogs() {
-       
+       console.log('getWorklogs')
         const worklogs = await this.worklogsService.getAllWorklogs();
         return worklogs;
     }
@@ -32,7 +32,7 @@ export class ReportsService {
     async getUserWorklogDictionary() {
         const initWorklogDictionary = await createUserWorklogObjects(await this.getUsers());
         const worklogDictionary = await mapWorklogData(initWorklogDictionary, await this.getWorklogs());
-
+        console.log('worklogDictionary', worklogDictionary);
         return worklogDictionary;
     }
 }

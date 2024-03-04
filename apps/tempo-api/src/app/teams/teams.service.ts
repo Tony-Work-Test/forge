@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common'
-import { UserService } from '../users/user.service'
-import { WorklogsService } from '../worklogs/worklogs.service'
+ import { Injectable } from '@nestjs/common'
+// import { UserService } from '../users/user.service'
+// import { WorklogsService } from '../worklogs/worklogs.service'
 @Injectable()
 export class TeamsService {
 
-    constructor(private readonly userService: UserService, private readonly worklogsService: WorklogsService) {}
+    constructor() {}
     
     // async getTeamMembers(teamId: string) {
     //     const users = await this.userService.getAllUsers()

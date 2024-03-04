@@ -2,7 +2,7 @@ import axios from 'axios';
 import { lastValueFrom } from 'rxjs';
 import { from } from 'rxjs';
 import { jiraToken } from '../tokens/drc-token';
-import { saveJsonToFile } from '../import/util';
+
 
 // import {token} from '../export/drc-token';
 const jiraURL ='https://datarecognitioncorp-sandbox-645.atlassian.net/rest/api/3';
@@ -14,10 +14,10 @@ const base64Credentials = Buffer.from(`${email}:${password}`).toString(
 
 export async function GetAllUsers() {
   let entries = [];
-  let totalAvailable = Infinity; // Assuming we don't know the total initially
+  let totalAvailable = false; // Assuming we don't know the total initially
   let startAt = 0;
-  const maxResults = 50; // Assuming we want to fetch 50 entries per request
-  while (entries.length < totalAvailable) {
+  const maxResults = 300; // Assuming we want to fetch 50 entries per request
+  while (totalAvailable === false) {
     const response = await lastValueFrom(from(axios.get(`${jiraURL}/users/search`, {
       headers: {
         Authorization: `Basic ${base64Credentials}`,
@@ -29,11 +29,19 @@ export async function GetAllUsers() {
       },
     })));
     const responseData = response.data;
-    entries = entries.concat(responseData); // Assuming 'results' contains the list of items
-    totalAvailable = responseData.total; // Assuming 'total' provides the total number of entries available
-    startAt += responseData.length // Prepare the next startAt value for the next iteration
+    entries = entries.concat(responseData);
+    console.log(response)
+  
+    startAt += responseData.length 
+    console.log(startAt, totalAvailable)
+    if(responseData.length === 0){
+      totalAvailable = true;
+    }
+    
+    // Assuming 'total' provides the total number of entries available
+     // Prepare the next startAt value for the next iteration
   }
-  await saveJsonToFile(entries, 'users.json');
+  // await saveJsonToFile(entries, 'users.json');
   return entries;
 }
 

@@ -19,5 +19,6 @@ export async function mapWorklogData(userWorklogsDict: WorklogDictionary[], work
             userWorklogDict.worklogs.push(worklog);
         }
     });
+    console.log('userWorklogsDict', userWorklogsDict);
     return userWorklogsDict;
   }

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { lastValueFrom } from 'rxjs';
 import { from } from 'rxjs';
 import { bearerToken, jiraToken} from '../tokens/drc-token';
-import { saveJsonToFile } from '../import/util';
+// import { saveJsonToFile } from '../import/util';
 import { Worklog } from '../import/interfaces';
 // import {token} from '../export/drc-token';
 
@@ -86,6 +86,6 @@ export async function GetUpdatedWork() {
       },
     });
     const responseData = response.data.results as Worklog[];
-    await saveJsonToFile(responseData, 'worklogs.json')
+    // await saveJsonToFile(responseData, 'worklogs.json')
     return responseData;
   }

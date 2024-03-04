@@ -7,6 +7,6 @@ export class ReportsController {
 
     @Get()
     getReports() {
-        return this.reportService.getWorklogs();
+        return this.reportService.getUserWorklogDictionary();
     }
 }
