@@ -52,7 +52,7 @@ export interface AvatarUrls {
       accountId: string;
     };
   }
-  export interface Issue {
+  export interface IssueBase {
     self: string;
     id: number;
   }
@@ -77,3 +77,130 @@ export interface AvatarUrls {
     year: number; // Represents the year of the report
     weeklyReports: WeeklyReport[];
   }
+
+  export interface Issue {
+    expand: string;
+    id: string;
+    self: string;
+    key: string;
+    fields: Fields;
+  }
+  
+  export interface Fields {
+    parent?: Parent;
+    customfield_13580: unknown; // Replace 'any' with more specific types as needed
+    customfield_13460: unknown;
+    // Include other fields as required
+    customfield_13418: CustomField[];
+    customfield_13317: CustomField[];
+    customfield_13316: CustomField[];
+    // Add other custom fields as needed
+    issuetype: IssueType;
+    project: Project;
+    assignee: Assignee;
+    reporter: Reporter;
+    worklog: Worklog;
+    status: Status;
+    // Add other properties as required
+  }
+  export interface IFilteredData {
+    id: string;
+    key: string;
+    parent?: string | null;
+  }
+
+  export interface FilteredWorklog {
+    issue: IFilteredData;
+    worklog: Worklog;
+    parent: string | null;
+  }
+  
+  interface Parent {
+    id: string;
+    key: string;
+    self: string;
+    fields: ParentFields;
+  }
+  
+  interface ParentFields {
+    summary: string;
+    status: Status;
+    priority: Priority;
+    issuetype: IssueType;
+  }
+  
+  interface CustomField {
+    // Structure depends on the custom field's content
+  }
+  
+  interface IssueType {
+    self: string;
+    id: string;
+    description: string;
+    iconUrl: string;
+    name: string;
+    subtask: boolean;
+    avatarId: number;
+    hierarchyLevel: number;
+  }
+  
+  interface Project {
+    self: string;
+    id: string;
+    key: string;
+    name: string;
+    projectTypeKey: string;
+    simplified: boolean;
+    avatarUrls: AvatarUrls;
+  }
+  
+  interface Assignee {
+    self: string;
+    accountId: string;
+    emailAddress: string;
+    avatarUrls: AvatarUrls;
+    displayName: string;
+    active: boolean;
+    timeZone: string;
+    accountType: string;
+  }
+  
+  interface Reporter {
+    self: string;
+    accountId: string;
+    emailAddress: string;
+    avatarUrls: AvatarUrls;
+    displayName: string;
+    active: boolean;
+    timeZone: string;
+    accountType: string;
+  }
+  
+
+
+  
+  interface Status {
+    self: string;
+    description: string;
+    iconUrl: string;
+    name: string;
+    id: string;
+    statusCategory: StatusCategory;
+  }
+  
+  interface StatusCategory {
+    self: string;
+    id: number;
+    key: string;
+    colorName: string;
+    name: string;
+  }
+  
+  interface Priority {
+    self: string;
+    iconUrl: string;
+    name: string;
+    id: string;
+  }
+  
+  

@@ -14,4 +14,9 @@ export async function  saveJsonToFile(jsonData: unknown, filename: string): Prom
       throw error; // Rethrow or handle error as needed
     }
   }
+
+  export default function convertSecondsToHours(seconds: number): number {
+    const hours = seconds / 3600;
+    return hours;
+  }
   

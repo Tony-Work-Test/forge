@@ -3,8 +3,10 @@ import { lastValueFrom } from 'rxjs';
 import { from } from 'rxjs';
 import { bearerToken, jiraToken} from '../tokens/drc-token';
 // import { saveJsonToFile } from '../import/util';
-import { Worklog } from '../import/interfaces';
+import { IFilteredData, Issue, Worklog } from '../import/interfaces';
 // import {token} from '../export/drc-token';
+
+
 
 const TempoURL = 'https://api.us.tempo.io/4/worklogs/user';
 const TempoBaseURL = 'https://api.us.tempo.io/4';
@@ -88,4 +90,23 @@ export async function GetUpdatedWork() {
     const responseData = response.data.results as Worklog[];
     // await saveJsonToFile(responseData, 'worklogs.json')
     return responseData;
+  }
+
+  export async function restructureIssueData(issueId: string): Promise<IFilteredData> {
+    const response = await axios.get(`${JiraURL}/issue/${issueId}`, {
+      headers: {
+        Authorization: `Basic ${base64Credentials}`, // `Basic ${base64Credentials}
+        Accept: 'application/json',
+      },
+    });
+    const responseData = response.data as Issue;
+
+    const filteredData: IFilteredData = {
+      id: responseData.id,
+      key: responseData.key,
+      parent: responseData.fields.parent?.key || null,
+    };
+
+    return filteredData;
+
   }
