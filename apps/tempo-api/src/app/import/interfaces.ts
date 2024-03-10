@@ -57,6 +57,12 @@ export interface AvatarUrls {
     id: number;
   }
   
+  export interface WorklogDictionary
+{
+    userId: string;
+    displayName: string;
+    worklogs: FilteredWorklog[];
+}
   export interface Author {
     self: string;
     accountId: string;

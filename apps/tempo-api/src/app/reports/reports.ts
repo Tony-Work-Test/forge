@@ -1,5 +1,5 @@
 import { FilteredWorklog, User} from "../import/interfaces";
-import { WorklogDictionary } from "./reports.service";
+import { WorklogDictionary } from "../import/interfaces";
 
 export async function createUserWorklogObjects(users: User[]) {
     const userWorklogsDict: WorklogDictionary[] = users.map((user) => {
@@ -16,7 +16,8 @@ export async function mapWorklogData(userWorklogsDict: WorklogDictionary[], work
     worklogs.map((worklog) => {
         const userWorklogDict = userWorklogsDict.find((userWorklogDict) => userWorklogDict.userId === worklog.worklog.author.accountId);
         if (userWorklogDict) {
-            userWorklogDict.worklogs.push(worklog.worklog);
+
+            userWorklogDict.worklogs.push(worklog);
         }
     });
     console.log('userWorklogsDict', userWorklogsDict);

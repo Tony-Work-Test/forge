@@ -10,6 +10,7 @@ import { ProjectsModule } from './projects/projects.module';
 import { AccountsModule } from './accounts/accounts.module';
 import { TeamsModule } from './teams/teams.module';
 import { ReportsModule } from './reports/reports.module';
+import { AuthenticationModule } from './authentication/authentication.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ReportsModule } from './reports/reports.module';
     AccountsModule,
     TeamsModule,
     ReportsModule,
+    AuthenticationModule,
   ],
   controllers: [AppController],
   providers: [AppService, EmailService],

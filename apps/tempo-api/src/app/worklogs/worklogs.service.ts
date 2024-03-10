@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { GetAllWorklogs, GetUpdatedWork, GetUsersWorklogs, GetWorkAttributes, restructureIssueData } from './worklogs';
-import { FilteredWorklog } from '../import/interfaces';
-import convertSecondsToHours from '../import/util';
+// import { FilteredWorklog } from '../import/interfaces';
+import convertSecondsToHours, { saveJsonToFile } from '../import/util';
 
 @Injectable()
 export class WorklogsService {
@@ -29,14 +29,20 @@ export class WorklogsService {
             worklog.timeSpentSeconds = convertSecondsToHours(worklog.timeSpentSeconds);
             worklog.billableSeconds = convertSecondsToHours(worklog.billableSeconds);
            // TODO: (Code Cleanup) convert Var name to billableHours and timeSpentHours
-            const filteredWorklog: FilteredWorklog = {
-                issue: issueData,
-                worklog: worklog,
-                parent: issueData.parent ?? null
+            const filteredWorklog = {
+                logDate: worklog.createdAt,
+                worklog:{
+                
+                    issue: issueData,
+                    worklog: worklog,
+                    parent: issueData.parent ?? null
+                }
+                
             }
             return filteredWorklog
         });
         const data = await Promise.all(filteredData);
+        saveJsonToFile(data, 'filteredWorklogs.json');
         return data;
     }
 }

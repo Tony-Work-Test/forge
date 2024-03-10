@@ -1,15 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { WorklogsService } from '../worklogs/worklogs.service';
 import { UserService } from '../users/user.service';
-import { FilteredWorklog, User, Worklog } from '../import/interfaces';
+import { FilteredWorklog, User, WorklogDictionary} from '../import/interfaces';
 import { createUserWorklogObjects, mapWorklogData } from './reports';
+import { saveJsonToFile } from '../import/util';
 
-export interface WorklogDictionary
-{
-    userId: string;
-    displayName: string;
-    worklogs: Worklog[];
-}
+
 
 @Injectable()
 export class ReportsService {
@@ -23,7 +19,7 @@ export class ReportsService {
         return users;
     }
     
-    async getWorklogs(): Promise<FilteredWorklog[]> {
+    async getWorklogs(): Promise<any[]> {
         const worklogs = await this.worklogsService.getFilteredWorklogData();
         return worklogs;
     }
@@ -33,6 +29,8 @@ export class ReportsService {
         const initWorklogDictionary = await createUserWorklogObjects(users);
         const worklogs = await this.getWorklogs();
         const worklogDictionary = await mapWorklogData(initWorklogDictionary, worklogs);
+        await saveJsonToFile(users, 'employees.json');
+        /// await convertWorklogDictionaryToCsvAndSave(worklogDictionary, 'DRC-Finance-Sample.csv');
         return worklogDictionary; 
     } 
 }
