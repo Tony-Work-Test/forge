@@ -155,6 +155,21 @@ export interface AvatarUrls {
     worklog: FilteredWorklog;
     
   }
+
+  export interface TableEntry {
+    employeeNumber: string;
+    name: string;
+    projectCode: string;
+    projectTitle: string;
+    departmentName: string;
+    departmentLedgerCode: string;
+    date: string;
+    payCode: string;
+    hours: number;
+    task: string;
+    jobName: string;
+    payCategoryName: string;
+  }
   
   interface Parent {
     id: string;
