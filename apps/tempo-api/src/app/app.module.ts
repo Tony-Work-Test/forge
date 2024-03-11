@@ -11,6 +11,9 @@ import { AccountsModule } from './accounts/accounts.module';
 import { TeamsModule } from './teams/teams.module';
 import { ReportsModule } from './reports/reports.module';
 import { AuthenticationModule } from './authentication/authentication.module';
+import { PassportModule } from '@nestjs/passport';
+import { JwtModule } from '@nestjs/jwt';
+
 
 @Module({
   imports: [
@@ -21,8 +24,14 @@ import { AuthenticationModule } from './authentication/authentication.module';
     TeamsModule,
     ReportsModule,
     AuthenticationModule,
+    PassportModule,
+    JwtModule.register({
+      secret: 'secret',
+      signOptions: { expiresIn: '60s' },
+    }),
   ],
   controllers: [AppController],
   providers: [AppService, EmailService],
 })
 export class AppModule {}
+

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { GetAllUsers, GetUserGroups } from './users';
-import { User } from '../import/interfaces';
+import { GetAllUsers, GetCurrentUserData, GetUserGroups, GetUserByEmail } from './users';
+import { JiraUser, User } from '../import/interfaces';
 
 @Injectable()
 export class UserService {
@@ -15,6 +15,14 @@ export class UserService {
     async getUserGroups(userId: string) {
         console.log('userId', userId);
         return await GetUserGroups(userId);
+    }
+
+    async getCurrentUser() {
+        return await GetCurrentUserData();
+    }
+
+    async getUserByEmail(email: string):Promise<JiraUser> {
+        return await GetUserByEmail(email);
     }
 
     

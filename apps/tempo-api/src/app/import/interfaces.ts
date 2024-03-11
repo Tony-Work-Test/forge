@@ -15,7 +15,37 @@ export interface AvatarUrls {
     active: boolean;
     locale: string;
   }
+
+  export interface JiraUser {
+    accountId: string;
+    accountType: string;
+    active: boolean;
+    applicationRoles: ApplicationRoles;
+    avatarUrls: AvatarUrls;
+    displayName: string;
+    emailAddress: string;
+    groups: Groups;
+    key: string;
+    name: string;
+    self: string;
+    timeZone: string;
+  }
+
+  interface ApplicationRoles {
+    items: unknown[]; // You might want to define a more specific type based on what items contains
+    size: number;
+  }
+
+  interface Groups {
+    items: GroupNames[]; // Similarly, define a more specific type if possible for the items array
+    size: number;
+  }
   
+  interface GroupNames {
+    groupId: string;
+    name: string;
+    self: string;
+  }
   export interface UserCondensed {
     id: string;
     displayName: string;

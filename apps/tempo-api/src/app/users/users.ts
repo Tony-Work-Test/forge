@@ -2,12 +2,12 @@ import axios from 'axios';
 import { lastValueFrom } from 'rxjs';
 import { from } from 'rxjs';
 import { jiraToken } from '../tokens/drc-token';
-import { User } from '../import/interfaces';
+import { JiraUser, User } from '../import/interfaces';
 
 // import {token} from '../export/drc-token';
 const jiraURL =
   'https://datarecognitioncorp-sandbox-645.atlassian.net/rest/api/3';
-const email = 'tony.kelly@oasisdigital.com';
+let email = 'tony.kelly@oasisdigital.com';
 const password = jiraToken;
 const base64Credentials = Buffer.from(`${email}:${password}`).toString(
   'base64'
@@ -78,5 +78,32 @@ export async function GetUserGroups(userId: string) {
   });
   const responseData = response.data;
 
+  return responseData;
+}
+
+export async function GetCurrentUserData() {
+  const response = await axios.get(`${jiraURL}/myself`, {
+    headers: {
+      Authorization: `Basic ${base64Credentials}`,
+      Accept: 'application/json',
+    },
+  });
+  const responseData = response.data;
+
+  return responseData;
+}
+
+export async function GetUserByEmail(newEmail: string): Promise<JiraUser>{ 
+  email = newEmail;
+  const response = await axios.get(`${jiraURL}/user/search`, {
+    headers: {
+      Authorization: `Basic ${base64Credentials}`,
+      Accept: 'application/json',
+    },
+    params: {
+      query: email,
+    },
+  });
+  const responseData = response.data as JiraUser;
   return responseData;
 }
