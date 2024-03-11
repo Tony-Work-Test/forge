@@ -14,7 +14,7 @@ export class OAuthStrategy extends PassportStrategy(OAuth2Strategy, 'jira') {
       scope: process.env.Scope || "",
     });
   }
-  
+
   async validate(accessToken: string, refreshToken: string, profile: unknown, done: (error: unknown, user?: unknown) => void): Promise<unknown> {
     // Here, you can handle the user information returned by Jira
     // For example, find or create the user in your database
