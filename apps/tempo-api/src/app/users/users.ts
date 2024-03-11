@@ -35,7 +35,7 @@ export async function GetAllUsers() {
     );
     const responseData = response.data as User[];
     const eData = responseData.map((user) => {
-      // Below is wrapped in a empolyee object for Assets mapping
+      // Below is wrapped in a employee object for Assets mapping
       return {
         employee: {
           displayName: user.displayName,
