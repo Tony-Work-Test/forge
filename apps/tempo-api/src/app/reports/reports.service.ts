@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { WorklogsService } from '../worklogs/worklogs.service';
 import { UserService } from '../users/user.service';
-import { FilteredWorklog, User, WorklogDictionary} from '../import/interfaces';
+import { FilteredWorklogData, User, WorklogDictionary} from '../import/interfaces';
 import { createUserWorklogObjects, mapWorklogData } from './reports';
 import { saveJsonToFile } from '../import/util';
 
@@ -19,7 +19,7 @@ export class ReportsService {
         return users;
     }
     
-    async getWorklogs(): Promise<any[]> {
+    async getWorklogs(): Promise<FilteredWorklogData[]> {
         const worklogs = await this.worklogsService.getFilteredWorklogData();
         return worklogs;
     }

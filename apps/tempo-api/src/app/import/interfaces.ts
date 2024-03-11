@@ -150,6 +150,11 @@ export interface AvatarUrls {
     worklog: Worklog;
     parent: string | null;
   }
+  export interface FilteredWorklogData {
+    logDate: string;
+    worklog: FilteredWorklog;
+    
+  }
   
   interface Parent {
     id: string;

@@ -1,4 +1,4 @@
-import { FilteredWorklog, User} from "../import/interfaces";
+import { FilteredWorklogData, User} from "../import/interfaces";
 import { WorklogDictionary } from "../import/interfaces";
 
 export async function createUserWorklogObjects(users: User[]) {
@@ -12,12 +12,13 @@ export async function createUserWorklogObjects(users: User[]) {
     return userWorklogsDict;
   }
 
-export async function mapWorklogData(userWorklogsDict: WorklogDictionary[], worklogs: FilteredWorklog[]) {
+export async function mapWorklogData(userWorklogsDict: WorklogDictionary[], worklogs: FilteredWorklogData[]) {
     worklogs.map((worklog) => {
-        const userWorklogDict = userWorklogsDict.find((userWorklogDict) => userWorklogDict.userId === worklog.worklog.author.accountId);
+        // Todo: (Code Cleanup) Refactor interface to not have worklog.worklog.worklog
+        const userWorklogDict = userWorklogsDict.find((userWorklogDict) => userWorklogDict.userId === worklog.worklog.worklog.author.accountId);
         if (userWorklogDict) {
 
-            userWorklogDict.worklogs.push(worklog);
+            userWorklogDict.worklogs.push(worklog.worklog);
         }
     });
     console.log('userWorklogsDict', userWorklogsDict);
