@@ -73,4 +73,3 @@ export async function  saveJsonToFile(jsonData: unknown, filename: string): Prom
       // You might want to transform or simplify nested structures further depending on your CSV structure needs
     };
   }
-  
