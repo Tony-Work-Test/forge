@@ -5,10 +5,17 @@ import { GetAccounts, GetAccountTypes } from './accounts';
 export class AccountsService {
 
     async getAccountTypes() {
-        return await GetAccountTypes();
+        return await GetAccountTypes().catch((e) => {
+            console.error(e);
+        return e;
+        });
+
     }
 
     async getAllAccounts() {
-        return await GetAccounts();
+        return await GetAccounts().catch((e) => {
+            console.error(e);
+            return e;
+        });
     }
 }

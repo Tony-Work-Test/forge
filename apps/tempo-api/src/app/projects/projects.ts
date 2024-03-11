@@ -3,11 +3,12 @@ import { lastValueFrom } from 'rxjs';
 import { from } from 'rxjs';
 import { jiraToken } from '../tokens/drc-token';
 // import {token} from '../export/drc-token';
-const jiraURL ='https://datarecognitioncorp-sandbox-645.atlassian.net/rest/api/3';
-const kanbanURl = 'https://datarecognitioncorp-sandbox-645.atlassian.net/rest/agile/1.0/board';
-const email = 'tony.kelly@oasisdigital.com';
-const password = jiraToken
-const base64Credentials = Buffer.from(`${email}:${password}`).toString(
+// TODO: Move to .env
+export const jiraURL ='https://datarecognitioncorp-sandbox-645.atlassian.net/rest/api/3';
+export const kanbanURl = 'https://datarecognitioncorp-sandbox-645.atlassian.net/rest/agile/1.0/board';
+export const email = 'tony.kelly@oasisdigital.com';
+export const password = jiraToken
+export const base64Credentials = Buffer.from(`${email}:${password}`).toString(
   'base64'
 );
 

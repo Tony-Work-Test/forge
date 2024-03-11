@@ -9,12 +9,18 @@ export class AccountsController {
     @Get("types")
     @UseGuards(AuthGuard('jira'))
     getAccountTypes() {
-        return this.accountService.getAccountTypes();
+        return this.accountService.getAccountTypes().catch((e) => {
+            console.error(e);
+            return e;
+        })
     }
 
     @Get("allAccounts")
     @UseGuards(AuthGuard('jira'))
     getAllAccounts() {
-        return this.accountService.getAllAccounts();
+        return this.accountService.getAllAccounts().catch((e) => {
+            console.error(e);
+            return e;
+        })
     }
 }
